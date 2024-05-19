@@ -2,16 +2,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
+import 'core/environment/environment.dart';
 import 'core/helper/firebase_options.dart';
 import 'core/helper/notification_helper.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
+  await dotenv.load(fileName: Environment.fileName);
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await SystemChrome.setPreferredOrientations(
